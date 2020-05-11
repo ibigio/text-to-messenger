@@ -7,7 +7,7 @@ const
   bodyParser = require('body-parser'),
   // app = express().use(bodyParser.json());
   app = express();
-  app.post('/sms', bodyParser.json({verify:function(req,res,buf){req.rawBody=buf}}));
+  app.use('/sms', bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
