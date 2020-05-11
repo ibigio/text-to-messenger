@@ -11,12 +11,6 @@ const
   app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  console.log("id: " + process.env.MY_PSID);
-  let response;
-  response = {
-    "text": "Home!"
-  }
-  callSendAPI(process.env.MY_PSID, response);
   res.send('Hello World!');
 });
 
@@ -30,7 +24,7 @@ app.post('/sms', (req, res) => {
   // Create the payload for a basic text message
   let response;
   response = {
-    "text": `"${req.body.From}": "${req.body.Body}"`
+    "text": `${req.body.From}: ${req.body.Body}`
   }
 
   callSendAPI(process.env.MY_PSID, response);
@@ -71,9 +65,6 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
-
-  console.log("sending " + response + " to " + sender_psid);
-  console.log("my psid " + process.env.MY_PSID);
 
   request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
