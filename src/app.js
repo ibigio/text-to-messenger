@@ -14,14 +14,16 @@ app.get('/', (req, res) => {
 app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
 
-  twiml.message('');
+  console.log("Received sms: " + req.body);
 
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
+  twiml.message('');
 
   let resp_str = req.body.From + " : " + req.body.Body
 
   callSendAPI(process.env.MY_PSID, resp_str);
+
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(twiml.toString());
 
 });
 
