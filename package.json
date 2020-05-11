@@ -1,0 +1,22 @@
+{
+  "name": "text-to-messenger",
+  "version": "1.0.0",
+  "description": "An attempt to forward texts to twilio through to messenger.",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibigio/text-to-messenger.git"
+  },
+  "author": "Ilan Bigio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibigio/text-to-messenger/issues"
+  },
+  "homepage": "https://github.com/ibigio/text-to-messenger#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
