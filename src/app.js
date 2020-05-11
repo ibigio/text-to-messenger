@@ -61,6 +61,9 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
 
+  console.log("sending message to " + sender_psid);
+  console.log("my psid " + process.env.MY_PSID);
+
   request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
     "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
