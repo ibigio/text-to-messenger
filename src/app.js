@@ -9,8 +9,9 @@ const
 
 app.get('/', (req, res) => {
   console.log("id: " + process.env.MY_PSID);
+  let response;
   response = {
-    "text": `Home!`
+    "text": "Home!"
   }
   callSendAPI(process.env.MY_PSID, response);
   res.send('Hello World!');
@@ -24,6 +25,7 @@ app.post('/sms', (req, res) => {
   twiml.message('');
 
   // Create the payload for a basic text message
+  let response;
   response = {
     "text": `"${req.body.From}": "${req.body.Body}"`
   }
