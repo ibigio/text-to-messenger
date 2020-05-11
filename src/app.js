@@ -5,7 +5,10 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const
   express = require('express'),
   bodyParser = require('body-parser'),
-  app = express().use(bodyParser.json());
+  // app = express().use(bodyParser.json());
+  app = express();
+  app.post('/sms', bodyParser.json({verify:function(req,res,buf){req.rawBody=buf}}));
+  app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   console.log("id: " + process.env.MY_PSID);
