@@ -1,13 +1,28 @@
 'use strict';
 
+const request = require('request');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const
   express = require('express'),
   bodyParser = require('body-parser'),
-  request = require('request'),
   app = express().use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+});
+
+app.post('/sms', (req, res) => {
+  const twiml = new MessagingResponse();
+
+  twiml.message('');
+
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(twiml.toString());
+
+  let resp_str = req.body.From + " : " + req.body.Body
+
+  callSendAPI(process.env.MY_PSID, resp_str);
+
 });
 
 // Handles messages events
