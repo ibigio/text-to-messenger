@@ -8,6 +8,7 @@ const
   app = express().use(bodyParser.json());
 
 app.get('/', (req, res) => {
+  console.log("id: " + process.env.MY_PSID);
   callSendAPI(process.env.MY_PSID, "Home!");
   res.send('Hello World!');
 });
