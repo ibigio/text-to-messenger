@@ -15,11 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/sms', (req, res) => {
-  const twiml = new MessagingResponse();
-
   console.log("Received sms: " + req.body.Body);
-
-  twiml.message('');
 
   // Create the payload for a basic text message
   let response;
@@ -28,10 +24,7 @@ app.post('/sms', (req, res) => {
   }
 
   callSendAPI(process.env.MY_PSID, response);
-
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
-
+  res.sendStatus(200);
 });
 
 // Handles messages events
