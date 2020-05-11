@@ -9,7 +9,10 @@ const
 
 app.get('/', (req, res) => {
   console.log("id: " + process.env.MY_PSID);
-  callSendAPI(process.env.MY_PSID, "Home!");
+  response = {
+    "text": `Home!`
+  }
+  callSendAPI(process.env.MY_PSID, response);
   res.send('Hello World!');
 });
 
