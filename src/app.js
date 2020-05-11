@@ -16,13 +16,16 @@ app.get('/', (req, res) => {
 app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
 
-  console.log("Received sms: " + req.body);
+  console.log("Received sms: " + req.body.Body);
 
   twiml.message('');
 
-  let resp_str = req.body.From + " : " + req.body.Body
+  // Create the payload for a basic text message
+  response = {
+    "text": `"${req.body.From}": "${req.body.Body}"`
+  }
 
-  callSendAPI(process.env.MY_PSID, resp_str);
+  callSendAPI(process.env.MY_PSID, response);
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
@@ -61,7 +64,7 @@ function callSendAPI(sender_psid, response) {
     "message": response
   }
 
-  console.log("sending message to " + sender_psid);
+  console.log("sending " + response + " to " + sender_psid);
   console.log("my psid " + process.env.MY_PSID);
 
   request({
