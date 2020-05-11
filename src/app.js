@@ -24,7 +24,7 @@ app.post('/sms', (req, res) => {
   }
 
   callSendAPI(process.env.MY_PSID, response);
-  res.sendStatus(200);
+  res.end();
 });
 
 // Handles messages events
